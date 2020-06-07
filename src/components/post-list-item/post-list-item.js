@@ -6,9 +6,6 @@ class PostListItem extends React.Component {
     super(props);
     this.state = { important: false, like: false };
     this.onImportant = this.onImportant.bind(this);
-    // this.onLike = (state) => ({
-    //   like: !state.like,
-    // });
   }
 
   onImportant() {
@@ -24,7 +21,7 @@ class PostListItem extends React.Component {
   }
 
   render() {
-    const { label } = this.props;
+    const { label, onDelete } = this.props;
     let nameClass = 'app-list-item d-flex justify-content-between';
     if (this.state.important) {
       nameClass += ' important';
@@ -34,7 +31,7 @@ class PostListItem extends React.Component {
     }
 
     return (
-      <div className={nameClass} onClick={this.onLike}>
+      <div className={nameClass} onDoubleClick={this.onLike}>
         <span className="app-list-item-label">
           {label}
         </span>
@@ -42,7 +39,7 @@ class PostListItem extends React.Component {
           <button type="button" className="btn-star btn-sm" onClick={this.onImportant}>
             <i className="fa fa-star" />
           </button>
-          <button type="button" className="btn-trash btn-sm">
+          <button type="button" className="btn-trash btn-sm" onClick={onDelete}>
             <i className="fa fa-trash-o" />
           </button>
           <i className="fa fa-heart" />
